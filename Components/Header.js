@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import Colors from '../Constants/Colors'
 
+
 const Header = (props) => {
     
     return (
@@ -26,5 +27,6 @@ const styles = StyleSheet.create({
     headertext:{
         color:'black',
         fontSize:18,
+        fontFamily:'open-sans-Bold',
     },
 })
