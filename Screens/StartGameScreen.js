@@ -8,7 +8,7 @@ import {
     View,
     Keyboard,
     Alert,
- } from 'react-native';
+} from 'react-native';
 
 
 import Card from '../Components/Card';
@@ -16,6 +16,7 @@ import Input from '../Components/Input'
 import Colors from '../Constants/Colors';
 import Bodytext from '../Components/Bodytext'
 import Numbercontainer from '../Components/Numbercontainer'
+import MainButton from '../Components/MainButton';
 
 
 const StartGameScreen = (props) => {
@@ -56,7 +57,8 @@ const StartGameScreen = (props) => {
             <Card style={styles.summarycontainer}>
                 <Text>You Selected</Text>
                 <Numbercontainer>{selectedNumber}</Numbercontainer>
-                <Button title="START GAME" onPress={()=>{props.onStartGmae(selectedNumber)}}/>
+                <MainButton onPress={()=>{props.onStartGmae(selectedNumber)}}><Text>START GAME</Text></MainButton>
+                {/* <Button title="START GAME" onPress={()=>{props.onStartGmae(selectedNumber)}}/> */}
             </Card>
         )
     }
@@ -84,6 +86,9 @@ const StartGameScreen = (props) => {
                             <Button title='Reset' onPress={resetInputHandler} color={Colors.accent}/>
                         </View>
                         <View style={styles.button}>
+                            {/* <MainButton onPress={confirmInputHandler}>
+                                <Text>Confirm</Text>
+                            </MainButton> */}
                             <Button title='Confirm'  onPress={confirmInputHandler} color={Colors.primary}/>
                         </View>
                     </View>
