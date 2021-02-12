@@ -9,6 +9,7 @@ import Header from './Components/Header';
 import StartGameScreen from './Screens/StartGameScreen';
 import Gamescreen from './Screens/Gamescreen';
 import GameOverScreen from './Screens/GameOverScreen';
+import Appscreen from './Screens/Appscreen';
 
 const fetchFont = ()=> {
   return  font.loadAsync({
@@ -22,6 +23,7 @@ export default function App() {
   const [userNumber, setuseNumber] = useState();
   const [guessRounds, setguessRounds] = useState(0);
   const [dataloaded, setdataloaded] = useState(false)
+  // const [screen, setscreen] = useState(false)
 
   if (!dataloaded){
     return <AppLoading 
@@ -45,15 +47,24 @@ export default function App() {
     setguessRounds(numofRounds)
   }
 
+  const Guide = ()=>{
+    setscreen(true)
+  }
+
+  // let Content = <Appscreen screen={Guide}/>
+
+  
   let Content = <StartGameScreen onStartGmae={startGameHandler}/>
 
   if (userNumber && guessRounds <=0) {
     Content=<Gamescreen userChoice={userNumber} onGameover={gameOverHandler}/>
   }else{
     if (guessRounds>0) {
-      Content=<GameOverScreen roundsNumber={guessRounds} userNumber={userNumber} onRestart={configureNewGameHandler}/>
+      Content=<GameOverScreen roundsNumber={guessRounds} userNumber={userNumber}
+       onRestart={configureNewGameHandler}/>
     }
   }
+  
 
   return (
     <View style={styles.screen}>
