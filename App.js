@@ -9,7 +9,6 @@ import Header from './Components/Header';
 import StartGameScreen from './Screens/StartGameScreen';
 import Gamescreen from './Screens/Gamescreen';
 import GameOverScreen from './Screens/GameOverScreen';
-import Appscreen from './Screens/Appscreen';
 
 const fetchFont = ()=> {
   return  font.loadAsync({
