@@ -1,22 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { 
     Button,
     StyleSheet, 
-    Text, 
-    TextInput, 
+    Text,
     TouchableWithoutFeedback, 
     View,
     Keyboard,
     Alert,
+    Platform
 } from 'react-native';
+import {
+    AdMobBanner,
+    AdMobInterstitial,
+    isAvailableAsync,
+    PublisherBanner
+} from 'expo-ads-admob';
 
 
 import Card from '../Components/Card';
 import Input from '../Components/Input'
 import Colors from '../Constants/Colors';
-import Bodytext from '../Components/Bodytext'
 import Numbercontainer from '../Components/Numbercontainer'
 import MainButton from '../Components/MainButton';
+
+const BANNER = Platform.OS ==="android"?"ca-app-pub-2334470092084578/2836185788":"ca-app-pub-2334470092084578/2017928139"
+const InterstitialId = Platform.OS === "android"?"ca-app-pub-2334470092084578/9316945603":"ca-app-pub-2334470092084578/4256190615"
 
 
 const StartGameScreen = (props) => {
@@ -49,6 +57,16 @@ const StartGameScreen = (props) => {
         setselectedNumber(chosenNumber)
         Keyboard.dismiss()
     }
+
+    useEffect(()=>{
+        // const a =isAvailableAsync()
+        // console.log(a);
+        (async function(){
+            await AdMobInterstitial.setAdUnitID(InterstitialId); 
+            await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+            await AdMobInterstitial.showAdAsync();
+        })()
+    },[])
 
     let confirmedOutput;
 
@@ -94,7 +112,11 @@ const StartGameScreen = (props) => {
                     </View>
                 </Card>
                 {confirmedOutput}
-                {/* </View> */}
+                <AdMobBanner
+                    bannerSize="fullBanner"
+                    adUnitID={BANNER}
+                    servePersonalizedAds={true}
+                />
             </View>
         </TouchableWithoutFeedback>
     )
