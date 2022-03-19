@@ -30,7 +30,6 @@
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-2334470092084578~2596496721"
       },
-      "package": "com.geetha.Number_Guessing",
       "versionCode": 1
     },
     "web": {
