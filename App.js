@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react';
 import { StyleSheet, Text, View ,Platform} from 'react-native';
 import * as font from  'expo-font';
 import AppLoading from 'expo-app-loading';
+import * as Network from 'expo-network';
 
 
 import Header from './Components/Header';
@@ -29,6 +30,12 @@ export default function App() {
   const [dataloaded, setdataloaded] = useState(false)
   // const [screen, setscreen] = useState(false)
 
+  // useEffect(()=>{
+  //   (async function(){
+  //    const info= await Network.getNetworkStateAsync();
+  //    console.log(info.isConnected);
+  //   })()
+  // },[])
   if (!dataloaded){
     return <AppLoading 
     startAsync={fetchFont} 
@@ -38,11 +45,14 @@ export default function App() {
   }
 
   const configureNewGameHandler = async()=>{
+    const info= await Network.getNetworkStateAsync();
+    if(info.isConnected){
+      await AdMobInterstitial.setAdUnitID(InterstitialId); 
+      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+      await AdMobInterstitial.showAdAsync();
+    }
     setguessRounds(0);
     setuseNumber(null);
-    await AdMobInterstitial.setAdUnitID(InterstitialId); 
-    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
-    await AdMobInterstitial.showAdAsync();
   }
 
   const startGameHandler = (selectedNumber) =>{
