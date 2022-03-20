@@ -2,7 +2,7 @@
   "expo": {
     "name": "Number-Guessing",
     "slug": "Number-Guessing",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -11,7 +11,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 1
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,18 +19,19 @@
     "ios": {
       "supportsTablet": true,
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-2334470092084578~2069899029"
+        "googleMobileAdsAppId": "ca-app-pub-5007288133754485~2032571709"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-2334470092084578~2596496721"
+        "googleMobileAdsAppId": "ca-app-pub-5007288133754485~8194655372"
       },
-      "versionCode": 1
+      "versionCode": 1,
+      "package": "com.rakshith143.NumberGuessing"
     },
     "web": {
       "favicon": "./assets/favicon.png"

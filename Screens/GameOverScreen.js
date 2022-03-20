@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 import Titletext from '../Components/Titletext'
 import Bodytext from '../Components/Bodytext'
@@ -7,6 +7,7 @@ import Colors from '../Constants/Colors'
 import MainButton from '../Components/MainButton';
 
 const GameOverScreen = (props) => {
+    const [buttonControal, setbuttonControal] = useState(false)
     return (
         <View style={styles.screen}>
             <Titletext>The Game is over...!</Titletext>
@@ -20,7 +21,7 @@ const GameOverScreen = (props) => {
                     <Text> roundes to guess the number</Text> <Text style={styles.highlight}>{props.userNumber}...</Text>
                 </Bodytext>
             </View>
-            <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
+            <MainButton onPress={()=>{props.onRestart(),setbuttonControal(true)}} disabled={buttonControal}>NEW GAME</MainButton>
             {/* <Button title="NEW GAME" onPress={props.onRestart}/> */}
         </View>
     )

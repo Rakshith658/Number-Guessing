@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,Platform} from 'react-native';
 import * as font from  'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -9,6 +9,9 @@ import Header from './Components/Header';
 import StartGameScreen from './Screens/StartGameScreen';
 import Gamescreen from './Screens/Gamescreen';
 import GameOverScreen from './Screens/GameOverScreen';
+import {
+  AdMobInterstitial,
+} from 'expo-ads-admob';
 
 const fetchFont = ()=> {
   return  font.loadAsync({
@@ -16,6 +19,8 @@ const fetchFont = ()=> {
     'open-sans-Bold':require('./assets/fonts/OpenSans-Bold.ttf')
   })
 }
+
+const InterstitialId = Platform.OS === "android"?"ca-app-pub-5007288133754485/2415715086":"ca-app-pub-5007288133754485/4822386573"
 
 export default function App() {
 
@@ -32,7 +37,10 @@ export default function App() {
     />
   }
 
-  const configureNewGameHandler = ()=>{
+  const configureNewGameHandler = async()=>{
+    await AdMobInterstitial.setAdUnitID(InterstitialId); 
+    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+    await AdMobInterstitial.showAdAsync();
     setguessRounds(0);
     setuseNumber(null);
   }

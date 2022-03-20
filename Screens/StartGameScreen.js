@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { 
     Button,
     StyleSheet, 
@@ -11,9 +11,6 @@ import {
 } from 'react-native';
 import {
     AdMobBanner,
-    AdMobInterstitial,
-    isAvailableAsync,
-    PublisherBanner
 } from 'expo-ads-admob';
 
 
@@ -23,8 +20,7 @@ import Colors from '../Constants/Colors';
 import Numbercontainer from '../Components/Numbercontainer'
 import MainButton from '../Components/MainButton';
 
-const BANNER = Platform.OS ==="android"?"ca-app-pub-2334470092084578/2836185788":"ca-app-pub-2334470092084578/2017928139"
-const InterstitialId = Platform.OS === "android"?"ca-app-pub-2334470092084578/9316945603":"ca-app-pub-2334470092084578/4256190615"
+const BANNER = Platform.OS ==="android"?"ca-app-pub-5007288133754485/9990064722":"ca-app-pub-5007288133754485/5780245021"
 
 
 const StartGameScreen = (props) => {
@@ -57,17 +53,7 @@ const StartGameScreen = (props) => {
         setselectedNumber(chosenNumber)
         Keyboard.dismiss()
     }
-
-    useEffect(()=>{
-        // const a =isAvailableAsync()
-        // console.log(a);
-        (async function(){
-            await AdMobInterstitial.setAdUnitID(InterstitialId); 
-            await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
-            await AdMobInterstitial.showAdAsync();
-        })()
-    },[])
-
+1
     let confirmedOutput;
 
     if (confirmed) {
@@ -113,9 +99,10 @@ const StartGameScreen = (props) => {
                 </Card>
                 {confirmedOutput}
                 <AdMobBanner
-                    bannerSize="fullBanner"
+                    bannerSize="mediumRectangle"
                     adUnitID={BANNER}
                     servePersonalizedAds={true}
+                    style={{marginTop:30}}
                 />
             </View>
         </TouchableWithoutFeedback>
@@ -134,17 +121,6 @@ const styles = StyleSheet.create({
         width:300,
         maxWidth:'80%',
         alignItems:'center',
-        // shadowColor:'black',
-        // shadowOffset:{
-        //     width:0,
-        //     height:2
-        // },
-        // shadowRadius:6,
-        // shadowOpacity:0.26,
-        // elevation:5,
-        // backgroundColor:'white',
-        // padding:20,
-        // borderRadius:10,
     },
     title:{
         fontSize:20,
