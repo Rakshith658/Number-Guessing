@@ -38,11 +38,11 @@ export default function App() {
   }
 
   const configureNewGameHandler = async()=>{
+    setguessRounds(0);
+    setuseNumber(null);
     await AdMobInterstitial.setAdUnitID(InterstitialId); 
     await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
     await AdMobInterstitial.showAdAsync();
-    setguessRounds(0);
-    setuseNumber(null);
   }
 
   const startGameHandler = (selectedNumber) =>{
